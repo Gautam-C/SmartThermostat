@@ -1,0 +1,72 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Upstairs Thermostat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet", type="text/css", href="{% static 'thermostat/styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <h3>Upstairs Thermostat</h3>
+    
+    <hr>
+    
+    {% if messages %}
+        <div id="errorText">
+            {% for message in messages %}
+                <h5>{{ message }}</h5>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    <h4 id="setTemp">Set Temp : {{ set_temp }}</h4>
+        
+    <h4 id="currentTemp">Current Temp : {{ current_temp }}</h4>
+
+    <br>
+    <br>
+
+    <form action="{% url 'thermostat:set_temp' %}" method=post>
+        {% csrf_token %}
+        
+        <label>Input Temperature : </label>
+        <input type="number" name="value" placeholder="number">
+        <select name="unit">
+            <option value="F">F</option>
+            <option value="C">C</option>
+        </select>
+        <button type="submit" name="submit" value="enter">enter</button>
+    </form>
+
+    <br>
+    <br>
+
+    <form action="{% url 'thermostat:set_out_time' %}" method=post>
+        {% csrf_token %}
+
+        <label>Input Out Time</label>
+        <input type="time" name="startOutTime" placeholder="start time (hh:mm)">
+        <input type="time" name="endOutTime" placeholder="end time (hh:mm)">
+        <input type="number" name="outTemp" placeholder="out temperature">
+        <select name="outUnit">
+            <option value="F">F</option>
+            <option value="C">C</option>
+        </select>
+        <button type="submit" name="submit" value="enter">enter</button>
+    </form>
+
+    <script>
+
+        setInterval(function() {
+            $.getJSON("updateMonitors/", function(data) {
+                $("#setTemp").html(`Set Temp : ${data.set_temp}`);
+                $("#currentTemp").html(`Current Temp : ${data.current_temp}`);
+                console.log(data);
+            });
+        }, 
+        5000);
+    </script>
+
+</body>

@@ -1,0 +1,32 @@
+h3 {
+    color: black;
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+}
+
+p {
+    color: gray;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+form {
+    display: block;
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: gray;
+}
+
+h4 {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#errorText {
+    color: #ff8f8f;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
