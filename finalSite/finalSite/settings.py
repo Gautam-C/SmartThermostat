@@ -25,7 +25,7 @@ SECRET_KEY = '*5rla_egs=k&=#4^sf-z5dhg46y)_e)6xk7msfe86rvp#-z%f5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','127.0.0.1', 'raspberrypi']
 
 
 # Application definition
